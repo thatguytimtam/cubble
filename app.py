@@ -12,9 +12,15 @@ pg.display.set_caption('Cubble v.0.01')
 FPS = 120
 gameActive = True
 
+
+def levelLoad(level):
+    with open(level) as f:
+        print(f.read())
+
+
 #### LOOP
 while True:
-    win.fill((255,255,255))
+    win.fill((0,0,0))
     for event in pg.event.get():
         if event.type == pg.QUIT:
             pg.quit()
@@ -24,8 +30,15 @@ while True:
         pass
 
     else:
+
+        levelLoad(('level.txt'))
+        print('----')
+
         #### GAME
-        pass    
+        for i in range (20):
+            pg.draw.line(win, (255,255,255), (i*30,0), (i*30,winHeight), width=1)
+        for j in range(20):
+            pg.draw.line(win, (255,255,255), (0,j*30), (winWidth,j*30), width=1)
 
     pg.display.update()
     clock.tick(FPS)
